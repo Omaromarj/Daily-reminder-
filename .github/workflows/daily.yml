@@ -1,24 +1,20 @@
-name: Run Python Every Morning
+name: Daily Telegram Reminder
 
 on:
   schedule:
-    - cron: '0 4 * * *'  # كل يوم الساعة 4 صباحًا UTC = 7 صباحًا السعودية
-  workflow_dispatch:  # يتيح لك تشغيله يدويًا أيضًا
+    - cron: '0 4 * * *'  # الساعة 7 صباحًا بتوقيت السعودية
+  workflow_dispatch:
 
 jobs:
-  run-python:
+  run-script:
     runs-on: ubuntu-latest
+
     steps:
-      - name: install requests
-      - run: |
-         python3 -m pip install requests
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-      - uses: actions/checkout@v2
+      - name: Install requests
+        run: python3 -m pip install requests
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-
-      - name: Run the script
-        run: python main.py
+      - name: Run superlight.py
+        run: python3 superlight.py
