@@ -17,4 +17,4 @@ jobs:
         run: python3 -m pip install requests
 
       - name: Run superlight.py
-        run: python3 superlight.py
+        run: python3 main.py
